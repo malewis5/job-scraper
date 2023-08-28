@@ -1,4 +1,4 @@
-import Logger from '@ptkdev/logger';
+import Logger from '@ptkdev/logger'
 
 const options = {
   colors: true,
@@ -11,13 +11,13 @@ const options = {
   type: 'log',
   rotate: {
     size: '10M',
-    encoding: 'utf8',
+    encoding: 'utf8'
   },
   path: {
     debug_log: './debug.log',
-    error_log: './errors.log',
-  },
-};
+    error_log: './errors.log'
+  }
+}
 
 //@ts-ignore
-export const logger = new Logger(options);
+export const logger = new Logger(options)
