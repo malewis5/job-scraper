@@ -4,8 +4,12 @@
   "description": "",
   "main": "index.js",
   "scripts": {
-    "build": "tsc",
-    "start": "node dist/index.js"
+    "prestart": "npm run build",
+    "start": "node dist/index.js",
+    "build": "tsc"
+  },
+  "_moduleAliases": {
+    "@src": "dist/"
   },
   "keywords": [],
   "author": "",
@@ -17,6 +21,7 @@
   "dependencies": {
     "@ptkdev/logger": "^1.8.0",
     "dotenv": "^16.3.1",
-    "jsdom": "^22.1.0"
+    "jsdom": "^22.1.0",
+    "module-alias": "^2.2.3"
   }
 }

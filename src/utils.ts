@@ -1,6 +1,6 @@
 import { createHash } from 'crypto';
 import { JSDOM } from 'jsdom';
-import { logger } from './logger';
+import { logger } from '@src/logger';
 
 /**
  * Fetches the HTML document from the given URL.
@@ -26,7 +26,6 @@ export function extractJobs(dom: string): { [key: string]: Job } {
     `ul[class^="${process.env.BASE_CLASS_NAME}"]`
   );
   let jobs: { [key: string]: Job } = {};
-
   if (jobList) {
     const liChildren = Array.from(jobList.querySelectorAll('li')).filter(
       (li) => {

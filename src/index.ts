@@ -1,8 +1,9 @@
+require('module-alias/register');
 require('dotenv').config();
 require('dotenv').config({ path: `.env.local`, override: true });
 
 import fs from 'fs';
-import { fetchHTML, extractJobs } from './utils';
+import { fetchHTML, extractJobs } from '@src/utils';
 import { logger } from './logger';
 
 /**
