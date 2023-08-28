@@ -1,5 +1,6 @@
 import { createHash } from 'crypto';
 import { JSDOM } from 'jsdom';
+import { logger } from './logger';
 
 /**
  * Fetches the HTML document from the given URL.
@@ -46,6 +47,9 @@ export function extractJobs(dom: string): { [key: string]: Job } {
         .digest('hex');
       jobs[hash] = { title: h3Text, region: h4Text };
     });
+  } else {
+    logger.warning('No job listings found. Consider updating the class name.');
   }
+
   return jobs;
 }

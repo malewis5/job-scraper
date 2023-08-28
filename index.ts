@@ -1,31 +1,9 @@
 require('dotenv').config();
 require('dotenv').config({ path: `.env.local`, override: true });
-import Logger from '@ptkdev/logger';
-const options = {
-  colors: true,
-  debug: true,
-  info: true,
-  warning: true,
-  error: true,
-  sponsor: true,
-  write: true,
-  type: 'log',
-  rotate: {
-    size: '10M',
-    encoding: 'utf8',
-  },
-  path: {
-    // remember: add string *.log to .gitignore
-    debug_log: './debug.log',
-    error_log: './errors.log',
-  },
-};
-
-//@ts-ignore
-const logger = new Logger(options);
 
 import fs from 'fs';
 import { fetchHTML, extractJobs } from './utils';
+import { logger } from './logger';
 
 /**
  * Main function to fetch and process job listings.
@@ -37,6 +15,8 @@ async function main() {
   try {
     const dom = await fetchHTML();
     const currentJobs = extractJobs(dom);
+
+    logger.info(`Extracted ${Object.keys(currentJobs).length} current jobs`);
 
     let previousJobs: { [key: string]: Job } = {};
     if (fs.existsSync(process.env.FILE_PATH || '')) {
@@ -67,6 +47,8 @@ async function main() {
         );
 
     fs.writeFileSync(process.env.FILE_PATH || '', JSON.stringify(currentJobs));
+
+    logger.info('End job listing fetch and process');
   } catch (error) {
     logger.error(`An error occurred:, ${error}`);
   }
