@@ -10,7 +10,7 @@ import { logger } from './logger'
  * Main function to fetch and process job listings.
  * @throws Will log an error if any step in the process fails.
  */
-async function main() {
+export async function main() {
   logger.info('Begin job listing fetch and process')
 
   try {
